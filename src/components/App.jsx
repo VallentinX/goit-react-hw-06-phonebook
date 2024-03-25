@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { nanoid } from "nanoid";
+import Notiflix from "notiflix";
+import styles from "./App.module.css";
 
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter.jsx";
-import Notiflix from "notiflix";
-import styles from "./App.module.css";
 
 import { addContact, deleteContact } from "../redux/contactsSlice";
 import { setFilter } from "../redux/filterSlice";
+import { resetContacts } from "../redux/contactsSlice"; // Import the action to reset contacts
 
 const App = () => {
   const contacts = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Reset contacts when component mounts
+    dispatch(resetContacts());
+  }, [dispatch]);
 
   const handleAddContact = (name, number) => {
     const normalizedInputName = name.toLowerCase();
