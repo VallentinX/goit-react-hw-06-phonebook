@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  width: 212px;
+  text-align: center;
+  position: relative;
+  color: #fff;
+}
+h1::after,
+h1::before {
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  width: 60px;
+  height: 3px;
+  top: 20px;
+  right: -65px;
+}
+h1::before {
+  left: -65px;
+}
+h2 {
+  text-align: center;
+  margin: 15px;
+  color: #fff;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
