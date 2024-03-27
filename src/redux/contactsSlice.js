@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = JSON.parse(localStorage.getItem("contacts")) || [];
+const initialState = [];
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -8,20 +8,12 @@ const contactsSlice = createSlice({
   reducers: {
     addContact(state, action) {
       state.push(action.payload);
-      localStorage.setItem("contacts", JSON.stringify(state));
     },
     deleteContact(state, action) {
-      const newState = state.filter((contact) => contact.id !== action.payload);
-      localStorage.setItem("contacts", JSON.stringify(newState));
-      return newState;
-    },
-    resetContacts() {
-      localStorage.removeItem("contacts");
-      return initialState; // Reset contacts to initial state
+      return state.filter((contact) => contact.id !== action.payload);
     },
   },
 });
 
-export const { addContact, deleteContact, resetContacts } =
-  contactsSlice.actions;
+export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
